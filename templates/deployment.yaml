@@ -21,7 +21,7 @@ spec:
           image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
           ports:
             - name: gameserver
-              containerPort: 34198
+              containerPort: 34197
               protocol: UDP
           envFrom:
             - configMapRef:

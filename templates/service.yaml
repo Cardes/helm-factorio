@@ -11,9 +11,9 @@ spec:
     - IPv4
   ports:
     - name: gameserver
-      port: 8211
+      port: 34197
       protocol: UDP
-      targetPort: 8211
+      targetPort: 34197
   internalTrafficPolicy: Cluster
   type: LoadBalancer
   ipFamilyPolicy: SingleStack
