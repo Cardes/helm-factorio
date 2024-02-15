@@ -1,0 +1,4 @@
+---
+apiVersion: v2
+name: Factorio
+version: "1.0"

@@ -1,0 +1,19 @@
+{{ if .Values.createBuildResources }}
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: alpine-glibc
+  namespace: {{ .Values.Namespace }}
+spec:
+  lookupPolicy:
+    local: false
+  tags:
+    - name: alpine-3
+      from:
+        kind: DockerImage
+        name: 'docker.io/frolvlad/alpine-glibc:alpine-3'
+      importPolicy:
+        importMode: Legacy
+      referencePolicy:
+        type: Source
+{{ end }}

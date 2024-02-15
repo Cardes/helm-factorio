@@ -1,0 +1,35 @@
+{{ if .Values.createBuildResources }}
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: factorio-ocp
+  namespace: {{ .Values.Namespace }}
+  labels:
+    build: factorio-ocp
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'factorio-ocp:latest'
+  resources: {}
+  successfulBuildsHistoryLimit: 5
+  failedBuildsHistoryLimit: 5
+  strategy:
+    type: Docker
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: 'alpine-glibc:alpine-3'
+      buildArgs:
+        - name: VERSION
+          value: {{ .Values.Version }}
+        - name: SHA256
+          value: {{ .Values.SHA256 }}
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/Cardes/factorio-docker-ocp.git'
+    contextDir: docker
+  runPolicy: Serial
+{{ end }}

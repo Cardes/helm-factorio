@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.Namespace }}-{{ .Values.Applikation }}-data
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  mountOptions:
+    - nfsvers=4.1
+  claimRef:
+    name: {{ .Values.Applikation }}-data
+    kind: persistentVolumeClaim
+    namespace: {{ .Values.Namespace }}
+  storageClassName: manual
+  nfs:
+    path: /kubes/manual-{{ .Values.Namespace }}-{{ .Values.Applikation }}-data
+    server: {{ .Values.StorageServerIP }}

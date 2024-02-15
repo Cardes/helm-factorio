@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.Applikation }}
+  namespace: {{ .Values.Namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.Applikation }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.Applikation }}
+    spec:
+      containers:
+        - name: factorio-dedicated-server
+          image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
+          ports:
+            - name: gameserver
+              containerPort: 34198
+              protocol: UDP
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.Applikation }}-env
+          volumeMounts:
+            - name: game-volume
+              mountPath: /factorio
+      volumes:
+        - name: game-volume
+          persistentVolumeClaim:
+            claimName: {{ .Values.Applikation }}-data

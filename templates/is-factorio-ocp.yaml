@@ -1,0 +1,12 @@
+{{ if .Values.createBuildResources }}
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: factorio-ocp
+  namespace: {{ .Values.Namespace }}
+  labels:
+    build: factorio-ocp
+spec:
+  lookupPolicy:
+    local: false
+{{ end }}
