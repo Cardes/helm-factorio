@@ -6,6 +6,8 @@ metadata:
   namespace: {{ .Values.Namespace }}
   labels:
     app: {{ .Values.Applikation }}
+  annotations:
+    metallb.universe.tf/loadBalancerIPs: {{ .Values.LoadBalancerIP }}
 spec:
   ipFamilies:
     - IPv4
