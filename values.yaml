@@ -2,6 +2,8 @@
 Applikation: "myfactory"
 Namespace: "beltsparadise"
 
+#decides wether to use buildconfigs  and imagestreams or docker image
+ocp: true 
 #only one release per namespace can manage the builressources, so this is only allowed to be `true` once per namespace
 createBuildResources: true
 Version: 1.1.104

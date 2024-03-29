@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: factorio-dedicated-server
-          image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
+          #image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
+          image: "docker.io/factoriotools/factorio:{{ .Values.Version}}"
           ports:
             - name: gameserver
               containerPort: 34197

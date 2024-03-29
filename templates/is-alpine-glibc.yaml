@@ -1,4 +1,4 @@
-{{ if .Values.createBuildResources }}
+{{ if and (.Values.createBuildResources) (.Values.ocp)}}
 kind: ImageStream
 apiVersion: image.openshift.io/v1
 metadata:

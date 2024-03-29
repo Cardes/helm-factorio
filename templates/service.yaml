@@ -11,6 +11,7 @@ metadata:
 spec:
   ipFamilies:
     - IPv4
+  externalTrafficPolicy: Local
   ports:
     - name: gameserver
       port: 34197

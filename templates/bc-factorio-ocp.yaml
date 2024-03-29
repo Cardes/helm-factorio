@@ -1,4 +1,4 @@
-{{ if .Values.createBuildResources }}
+{{ if and (.Values.createBuildResources) (.Values.ocp) }}
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
