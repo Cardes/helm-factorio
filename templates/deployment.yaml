@@ -16,10 +16,19 @@ spec:
       labels:
         app: {{ .Values.Applikation }}
     spec:
+      {{ if (default .Values.ocp "false") }}
+      securityContext:
+        runAsUser: 845
+        runAsGroup: 845
+        fsGroup: 0
+      {{ end }}
       containers:
         - name: factorio-dedicated-server
-          #image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
-          image: "docker.io/factoriotools/factorio:{{ .Values.Version}}"
+          {{ if and (.Values.createBuildResources) (.Values.ocp) }}
+          image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
+          {{ else }}
+          image: "ghcr.io/cardes/factorio-docker-ocp:{{ .Values.Version}}"
+          {{ end }}
           ports:
             - name: gameserver
               containerPort: 34197
