@@ -1,6 +1,6 @@
 ---
-Applikation: "myfactory"
-Namespace: "beltsparadise"
+application: "myfactory"
+namespace: "beltsparadise"
 
 #decides wether to use buildconfigs  and imagestreams or docker image
 ocp: true 
@@ -10,10 +10,10 @@ createBuildResources: true
 Version: stable
 SHA256: 8e13353ab23d57989db7b06594411d30885de1a923f3a989d12749c1abc01583
 
-LoadBalancerIP: 10.100.1.102
+loadBalancerIP: 10.100.1.102
 
 #currently only nfs storage backend with a fixed ip adress and storagepath is supported
-StorageServerIP: 10.100.1.2
+storageServerIP: 10.100.1.2
 
 env:
       - UPDATE_MODS_ON_START=true

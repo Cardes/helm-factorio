@@ -1,9 +1,9 @@
 {{ if and (.Values.createBuildResources) (.Values.ocp) }}
 kind: BuildConfig
-apiVersion: build.openshift.io/v1
+apiversion: build.openshift.io/v1
 metadata:
   name: factorio-ocp
-  namespace: {{ .Values.Namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     build: factorio-ocp
 spec:
@@ -22,7 +22,7 @@ spec:
         name: 'alpine-glibc:alpine-3'
       buildArgs:
         - name: VERSION
-          value: {{ .Values.Version }}
+          value: {{ .Values.version }}
         - name: SHA256
           value: {{ .Values.SHA256 }}
   postCommit: {}

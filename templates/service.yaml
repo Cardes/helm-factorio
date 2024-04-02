@@ -1,13 +1,13 @@
 ---
 kind: Service
-apiVersion: v1
+apiversion: v1
 metadata:
-  name: {{ .Values.Applikation }}
-  namespace: {{ .Values.Namespace }}
+  name: {{ .Values.application }}
+  namespace: {{ .Values.namespace }}
   labels:
-    app: {{ .Values.Applikation }}
+    app: {{ .Values.application }}
   annotations:
-    metallb.universe.tf/loadBalancerIPs: {{ .Values.LoadBalancerIP }}
+    metallb.universe.tf/loadBalancerIPs: {{ .Values.loadBalancerIP }}
 spec:
   ipFamilies:
     - IPv4
@@ -22,4 +22,4 @@ spec:
   ipFamilyPolicy: SingleStack
   sessionAffinity: None
   selector:
-    app: {{ .Values.Applikation }}
+    app: {{ .Values.application }}

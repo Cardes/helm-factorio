@@ -1,9 +1,9 @@
 {{ if and (.Values.createBuildResources) (.Values.ocp) }}
 kind: ImageStream
-apiVersion: image.openshift.io/v1
+apiversion: image.openshift.io/v1
 metadata:
   name: factorio-ocp
-  namespace: {{ .Values.Namespace }}
+  namespace: {{ .Values.namespace }}
   labels:
     build: factorio-ocp
 spec:

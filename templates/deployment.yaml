@@ -1,20 +1,20 @@
 ---
-apiVersion: apps/v1
+apiversion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.Applikation }}
-  namespace: {{ .Values.Namespace }}
+  name: {{ .Values.application }}
+  namespace: {{ .Values.namespace }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: {{ .Values.Applikation }}
+      app: {{ .Values.application }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: {{ .Values.Applikation }}
+        app: {{ .Values.application }}
     spec:
       {{ if (default .Values.ocp "false") }}
       securityContext:
@@ -25,9 +25,9 @@ spec:
       containers:
         - name: factorio-dedicated-server
           {{ if and (.Values.createBuildResources) (.Values.ocp) }}
-          image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.Namespace }}/factorio-ocp:latest"
+          image: "image-registry.openshift-image-registry.svc:5000/{{ .Values.namespace }}/factorio-ocp:latest"
           {{ else }}
-          image: "ghcr.io/cardes/factorio-docker-ocp:{{ .Values.Version}}"
+          image: "ghcr.io/cardes/factorio-docker-ocp:{{ .Values.version}}"
           {{ end }}
           ports:
             - name: gameserver
@@ -35,11 +35,11 @@ spec:
               protocol: UDP
           envFrom:
             - configMapRef:
-                name: {{ .Values.Applikation }}-env
+                name: {{ .Values.application }}-env
           volumeMounts:
             - name: game-volume
               mountPath: /factorio
       volumes:
         - name: game-volume
           persistentVolumeClaim:
-            claimName: {{ .Values.Applikation }}-data
+            claimName: {{ .Values.application }}-data
