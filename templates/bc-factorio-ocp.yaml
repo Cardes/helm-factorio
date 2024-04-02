@@ -1,6 +1,6 @@
 {{ if and (.Values.createBuildResources) (.Values.ocp) }}
 kind: BuildConfig
-apiversion: build.openshift.io/v1
+apiVersion: build.openshift.io/v1
 metadata:
   name: factorio-ocp
   namespace: {{ .Values.namespace }}

@@ -1,6 +1,6 @@
 ---
 kind: Service
-apiversion: v1
+apiVersion: v1
 metadata:
   name: {{ .Values.application }}
   namespace: {{ .Values.namespace }}
