@@ -17,5 +17,5 @@ spec:
     namespace: {{ .Values.namespace }}
   storageClassName: manual
   nfs:
-    path: /kubes/manual-{{ .Values.namespace }}-{{ .Values.application }}-data
+    path: {{ .Values.nfsPath }}-{{ .Values.namespace }}-{{ .Values.application }}-data
     server: {{ .Values.storageServerIP }}

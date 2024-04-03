@@ -14,6 +14,7 @@ loadBalancerIP: 10.100.1.102
 
 #currently only nfs storage backend with a fixed ip adress and storagepath is supported
 storageServerIP: 10.100.1.2
+nfsPath: /kubes/manual
 
 env:
       - UPDATE_MODS_ON_START=true
